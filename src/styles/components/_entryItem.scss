@@ -1,0 +1,26 @@
+.entryContainer {
+  background-color: white;
+  padding: $s-size;
+  //border-left: 9px solid $grey-blue;
+  font-family: "Lora", serif;
+  margin: 0 0 $s-size $l-size;
+  width: 75%;
+}
+
+.entryContainer h1 {
+  font-size: 2rem;
+  color: $off-black;
+  margin: $m-size;
+}
+
+.entryContainer p {
+  color: $off-black;
+  margin: 0 $m-size $m-size $m-size;
+}
+
+.entryContainer span {
+  float: right;
+  font-size: 1.6rem;
+  font-weight: 100;
+  margin-top: 0.5rem;
+}

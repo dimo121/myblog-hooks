@@ -1,0 +1,26 @@
+//change these accrodingly
+
+.button {
+  color: $off-black;
+  margin: 0 $l-size 0 $l-size;
+  font-weight: 200;
+  font-size: 2rem;
+  background: white;
+  border: 1px solid black;
+}
+
+.buttonModal {
+  background: $purple;
+  border: none;
+  border-bottom: 0.3rem solid darken($purple, 10%);
+  color: white;
+  font-weight: 500;
+  padding: $s-size;
+}
+
+.button--link {
+  background: none;
+  border: none;
+  color: $off-black;
+  padding: 0;
+}

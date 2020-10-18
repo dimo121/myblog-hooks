@@ -1,0 +1,35 @@
+.blogContainer {
+  background-color: white;
+  padding: $s-size;
+  border-left: 9px solid $grey-blue;
+  font-family: "Playfair Display", serif;
+  margin: 0 0 $l-size $l-size;
+  width: 60%;
+}
+
+.blogContainer h1 {
+  color: $off-black;
+  margin: $m-size;
+}
+
+.blogContainer p {
+  color: $off-black;
+  font-family: "Lora";
+  margin: 0 $m-size $m-size $m-size;
+}
+
+.blogContainer button {
+  background: $gainsboro;
+  border: 1px solid black;
+  border-radius: 2rem;
+  height: 3rem;
+  width: 9rem;
+  float: right;
+}
+
+.blogContainer__span {
+  float: right;
+  font-size: 1.6rem;
+  font-weight: 100;
+  margin-top: 0.5rem;
+}

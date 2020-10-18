@@ -1,0 +1,54 @@
+.nav__container {
+  background: $grey-blue;
+  color: $floral-white;
+  font-family: "Source code pro Helvetica";
+  padding: $l-size 0 1px 0;
+}
+.nav__container ul {
+  display: flex;
+}
+
+.nav__container li {
+  list-style-type: none;
+  margin-right: 3rem;
+}
+
+.nav__container li:nth-child(3) {
+  margin-left: auto;
+}
+
+.nav__title {
+  font-size: $l-size;
+  margin-left: 4.5rem;
+}
+
+.nav__links {
+  color: $gainsboro;
+  font-size: 1.5rem;
+  padding: 5px;
+  text-decoration: none;
+}
+
+.nav__links:hover {
+  background: darken($grey-blue, 5%);
+}
+
+.nav__log {
+  position: absolute;
+  top: 7rem;
+  right: 10rem; 
+  line-height: 0.8rem;
+  font-size: 1.2rem;
+}
+
+.nav__container button {
+  background: $gainsboro;
+  border: none;
+  color: black;
+  height: 2rem;
+  font-size: 1rem;
+}
+
+.nav__container button:hover {
+  background: darken($gainsboro, 15%);
+}

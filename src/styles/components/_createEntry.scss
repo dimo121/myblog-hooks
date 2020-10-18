@@ -1,0 +1,13 @@
+
+.create__container{
+    background: $gainsboro;
+    border-radius: 1rem;
+    width: 90%;
+    margin: 3rem auto;
+    padding: 2rem;
+}
+
+.create__container h1 {
+    margin-left: $l-size;
+    font-family: 'Source code pro', Helvetica;
+}
