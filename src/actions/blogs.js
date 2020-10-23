@@ -49,9 +49,6 @@ export const startSetBlogs = () => {
     return axios({
       url: "http://localhost:3000/blogs",
       method: "GET",
-      // headers: {
-      //   Authorization: `Bearer ${localStorage.getItem("jwtoken")}`,
-      // },
     })
       .then((response) => {
         dispatch(setBlogs(response.data));

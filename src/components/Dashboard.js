@@ -3,11 +3,9 @@ import { BlogItem } from "./BlogItem";
 import { EntryListFilter } from "./EntryListFilter";
 import React from "react";
 
-function Dashboard(props) {
-  //useEffect to filter blogs depending on user
-
+const Dashboard = (props) => {
   return (
-    <div className="search__container">
+    <div className="main__container">
       <EntryListFilter />
       {props.blogs.map((item) => (
         <BlogItem key={item.id} blog={item} />

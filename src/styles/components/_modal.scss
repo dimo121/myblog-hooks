@@ -4,7 +4,6 @@
 }
 
 .ReactModalPortal .ReactModal__Overlay {
-  //seen in the elements panel
   align-items: center; //also flexbox property
   display: flex;
   justify-content: center;
@@ -12,12 +11,10 @@
 }
 
 .ReactModalPortal .ReactModal__Overlay--after-open {
-  //seen in the elements panel
   opacity: 1;
 }
 
 .ReactModalPortal .ReactModal__Overlay--before-close {
-  //seen in the elements panel
   opacity: 0;
 }
 

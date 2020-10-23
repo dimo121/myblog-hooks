@@ -1,7 +1,7 @@
 import { DateTime } from "luxon";
 import React, { useEffect, useState } from "react";
 
-export function EntryFormPage(props) {
+export const EntryFormPage = (props) => {
   const [createdAt, setTime] = useState(
     DateTime.local().toLocaleString(DateTime.DATETIME_MED)
   );
@@ -19,6 +19,7 @@ export function EntryFormPage(props) {
     if (!title || !content) {
       setError("Both title and content are required");
     } else {
+      setError('');
       props.onSubmit({
         title,
         createdAt,

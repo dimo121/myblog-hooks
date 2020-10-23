@@ -1,10 +1,15 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import RegisterModal from "./RegisterModal";
+import { connect } from 'react-redux';
 import LoginModal from "./LoginModal";
+import { NavLink } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import RegisterModal from "./RegisterModal";
+import { setCurrentUser, startSetUser, deleteCurrentUser } from "../actions/users";
 
-export default function Header() {
+//redux currentUser is not persisting. Still loading user from useEffect and setting token to localStorage
+
+const Header = (props) => {
+
   const [loginMod, setLogin] = useState(undefined);
   const [registerMod, setRegister] = useState(undefined);
   const [loggedIn, setUser] = useState(undefined);
@@ -17,20 +22,8 @@ export default function Header() {
     const token = localStorage.getItem('jwtoken');
 
     if(token) {
-      axios({
-        url: 'http://localhost:3000/users/me',
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-        .then((response) => {
-          setName(response.data.name)
-          setUser(true);
-        })
-        .catch((error) => {
-          console.log(error.response);
-        });
+      setUser(true);
+      props.startSetUser(token);
     }
   }, []);
 
@@ -44,6 +37,7 @@ export default function Header() {
     if (loggedIn) {
       setUser(undefined);
       localStorage.clear();
+      props.deleteCurrentUser();
     } else {
       setLogin(true);
     }
@@ -69,12 +63,16 @@ export default function Header() {
       },
     })
       .then((response) => {
+        props.setCurrentUser({
+          id : response.data.user._id,
+          name : response.data.user.name,
+        });
         localStorage.setItem("jwtoken", response.data.token);
         setError(undefined);
         setUser(true);
         clearModal();
       })
-      .catch((error) => {
+      .catch(() => {
         const errMsg = loginMod
           ? "Wrong email and password combination"
           : "Email already being used";
@@ -97,10 +95,15 @@ export default function Header() {
           </NavLink>}
         </li>
         <li>
+          {loggedIn && <NavLink className="nav__links" to={`/myblogs/${props.filters.currentUser.id}`}>
+            My blogs
+          </NavLink>}
+        </li>
+        <li>
           {loggedIn && (
             <div className="nav__log">
               <p>Logged in as:</p>
-              <p>{name}</p>
+              <p>{props.filters.currentUser.name}</p>
             </div>
           )}
         </li>
@@ -131,3 +134,15 @@ export default function Header() {
     </div>
   );
 }
+
+const mapStateToProps = (state) => ({
+  filters: state.filters
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  startSetUser : (token) => dispatch(startSetUser(token)),
+  deleteCurrentUser : () => dispatch(deleteCurrentUser()),
+  setCurrentUser : (user) => dispatch(setCurrentUser(user))
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(Header)
