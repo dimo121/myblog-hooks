@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { startCreateEntry } from "../actions/entries";
-import { EntryFormPage } from "./EntryFormPage";
+import EntryFormPage from "./EntryFormPage";
 import React, { useEffect, useState } from "react";
 
 const CreateEntry = (props) => {

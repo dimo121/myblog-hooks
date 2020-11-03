@@ -1,46 +1,66 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, fireEvent, getByTestId, getByRole, screen } from "@testing-library/react";
 import EntryFormPage from '../../components/EntryFormPage';
 
 test('should render ExpenseFormPage correctly', () => {
-    const wrapper = shallow(<EntryFormPage />);
-    expect(wrapper).toMatchSnapshot();
+    render(<EntryFormPage />);
+    expect(screen).toMatchSnapshot();
 });
 
 test('should change error state with invalid input', () => {
     const onSubmitSpy = jest.fn();
-    const wrapper = shallow(<EntryFormPage onSubmit={onSubmitSpy}/>);
-    
-    wrapper.find('form').simulate('submit', { 
-        preventDefault: () => {}
-    });
+ 
+    render(<EntryFormPage onSubmit={onSubmitSpy} />)
 
-    expect(wrapper.state('error').length).toBe(35)
-})
+    fireEvent.submit(screen.getByRole("entryForm"));
+
+    let errorValue = {};
+    
+    try{
+        errorValue = screen.getByTestId('error', { hidden: true });
+    } catch(e){
+        console.log(e);
+    }
+
+    expect(errorValue.textContent).toBe("Error : Both title and content are required");
+});
 
 test('should submit with valid input and no error', () => {
+    
+    const title = "Testing 1";
+    const content = "Testing 12";
+
     const onSubmitSpy = jest.fn();
-    const wrapper = shallow(<EntryFormPage onSubmit={onSubmitSpy}/>);
     
-    expect(wrapper).toMatchSnapshot();
+    const { container } = render(<EntryFormPage onSubmit={onSubmitSpy} />)
+
+    const titleValue = getByTestId(container, "title")
+    const contentValue = getByTestId(container, "content")
+
+    fireEvent.change(titleValue, { target : { value: title }});
+    fireEvent.change(contentValue, { target : { value: content }});
     
-    const stateValue = {
-        title: 'Testing 1',
-        content: 'Testing 12',
-        createdAt: 123
-    };
+    fireEvent.submit(screen.getByRole("entryForm"))
 
-    wrapper.setState(stateValue);
+    let errorValue = {};
 
-    expect(wrapper).toMatchSnapshot();
+    try{
 
-    wrapper.find('form').simulate('submit', { 
-        preventDefault: () => {}
+        errorValue = screen.getByTestId('error', { hidden: true });
+    
+    } catch(e){
+        console.log(e);
+    }
+    expect(errorValue.textContent).toBe(undefined);
+    expect(onSubmitSpy).toHaveBeenLastCalledWith({
+        title,
+        description: content,
+        createdAt: expect.any(String)
     });
 
-    expect(wrapper.state('error')).toBe('');
-    expect(onSubmitSpy).toHaveBeenLastCalledWith(stateValue);
 });
+
+/*
 
 test('should change input state for title', () => {
     const value = 'Title 1';
@@ -66,3 +86,5 @@ test('should change input state for title', () => {
 
     expect(wrapper.state('content')).toBe(value); 
 });
+
+*/

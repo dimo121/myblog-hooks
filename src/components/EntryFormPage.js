@@ -1,7 +1,7 @@
 import { DateTime } from "luxon";
 import React, { useEffect, useState } from "react";
 
-export const EntryFormPage = (props) => {
+export default function EntryFormPage (props) {
   const [createdAt, setTime] = useState(
     DateTime.local().toLocaleString(DateTime.DATETIME_MED)
   );
@@ -34,13 +34,15 @@ export const EntryFormPage = (props) => {
 
   return (
     <div className="entry__container">
-      {error && <p>Error : {error}</p>}
-      <form onSubmit={onSubmit}>
+      {error && <p data-testid="error">Error : {error}</p>}
+      <form onSubmit={onSubmit}
+            name="entryForm"
+            role = "entryForm">
         <label htmlFor="title">Title:</label>
         <br />
         <input
           type="text"
-          id="title"
+          data-testid="title"
           name="title"
           placeholder="Blog title"
           onChange={onTitleChange}
@@ -52,7 +54,7 @@ export const EntryFormPage = (props) => {
         <textarea
           className="entry__textarea"
           type="text"
-          id="content"
+          data-testid="content"
           name="content"
           cols="120"
           rows="20"

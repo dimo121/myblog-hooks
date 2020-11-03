@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const createBlog = (blog) => ({
+export const createBlog = (blog) => ({
   type: "CREATE_BLOG",
   blog,
 });

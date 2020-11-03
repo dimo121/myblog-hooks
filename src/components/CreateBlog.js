@@ -1,5 +1,5 @@
 import React from "react";
-import { EntryFormPage } from "./EntryFormPage";
+import EntryFormPage from "./EntryFormPage";
 import { connect } from "react-redux";
 import { startCreateBlog } from "../actions/blogs";
 
