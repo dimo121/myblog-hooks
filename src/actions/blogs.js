@@ -7,7 +7,7 @@ export const createBlog = (blog) => ({
 
 export const startCreateBlog = ({
   title = "",
-  description = "",
+  content = "",
   createdAt = "",
 } = {}) => {
   return (dispatch) => {
@@ -19,7 +19,7 @@ export const startCreateBlog = ({
       },
       data: {
         title,
-        description,
+        content,
         createdAt,
       },
     })

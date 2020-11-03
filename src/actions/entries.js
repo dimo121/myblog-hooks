@@ -7,7 +7,7 @@ const createEntry = (entry) => ({
 
 export const startCreateEntry = ({
   title = "",
-  description = "",
+  content = "",
   createdAt = 0,
   blog_id = "",
 }) => {
@@ -20,7 +20,7 @@ export const startCreateEntry = ({
       },
       data: {
         title,
-        description,
+        content,
         createdAt,
         blog_id,
       },

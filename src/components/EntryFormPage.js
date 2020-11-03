@@ -22,8 +22,8 @@ export default function EntryFormPage (props) {
       setError('');
       props.onSubmit({
         title,
-        createdAt,
-        description: content,
+        content,
+        createdAt
       });
     }
   };
