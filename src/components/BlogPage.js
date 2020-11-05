@@ -16,7 +16,7 @@ const BlogPage = (props) => {
           {blog.title}
           <span className="blogContainer__span">{blog.createdAt}</span>
         </h1>
-        <p>{blog.description}</p>
+        <p>{blog.content}</p>
         <p>Replies: {blog.entries && blog.entries.length}</p>
       </div>
       <div>

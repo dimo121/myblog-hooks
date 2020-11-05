@@ -1,28 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 
 // yet to implement selector
 
 export const EntryListFilter = (props) => {
-  const [text, setText] = useState("");
-  const [searchBy, setSearch] = useState("title");
 
   return (
     <div>
       <input
         className="searchBar"
         type="text"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
+        value={props.text}
+        onChange={(e) => props.setText(e.target.value)}
       />
       <select
         className="pullDown"
-        value={searchBy}
+        value={props.search}
         onChange={(e) =>
-          e.target.value === "title" ? setSearch("content") : setSearch("title")
+          props.setSearch(e.target.value)
         }
       >
-        <option value="title">Title</option>
-        <option value="content">Content</option>
+        <option value="Title">Title</option>
+        <option value="Content">Content</option>
       </select>
     </div>
   );
